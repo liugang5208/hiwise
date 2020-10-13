@@ -1,0 +1,33 @@
+server:
+  port: 8700
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: sunflower-gray
+          uri:
+          order: 0
+          predicates:
+            - Path=/sunflower/**
+            - Version=2.1
+          filters:
+            - StripPrefix=1
+            - Log=true
+        - id: sunflower
+          uri:
+          order: 1
+          predicates:
+            - Path=/sunflower/**
+          filters:
+            - StripPrefix=1
+            - Log=true
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8100

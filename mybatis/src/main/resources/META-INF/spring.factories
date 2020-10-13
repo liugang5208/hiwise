@@ -1,0 +1,16 @@
+org.springframework.boot.SpringApplicationRunListener=\
+com.sky.hiwise.mybatis.config.MySpringApplicationRunListener
+#org.springframework.context.ApplicationContextInitializer=\
+#com.sky.hiwise.mybatis.config.MyApplicationContextInitializer
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.sky.hiwise.mybatis.config.MyEnvironmentPostProcessor
+com.sky.hiwise.mybatis.config.BootstrapConfiguration=\
+com.sky.hiwise.mybatis.config.ZKConfiguration,\
+com.sky.hiwise.mybatis.config.MyApplicationContextInitializer
+
+org.springframework.context.ApplicationListener=\
+com.sky.hiwise.mybatis.config.MyApplicationListener,\
+com.sky.hiwise.mybatis.config.RefreshedApplicationListener
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.sky.hiwise.mybatis.config.ZKConfiguration

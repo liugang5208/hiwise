@@ -1,0 +1,6 @@
+# Elasticsearch
+elasticsearch:
+  clusterName: es-qa-test #test-node-1 #es-qa-test
+  ip: 10.16.208.82
+  port: 9301
+  pool: 5

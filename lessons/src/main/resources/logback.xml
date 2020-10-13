@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d %-5level %X{REQUEST_ID} %logger{36} : %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <!-- INFO 日志配置 排除Error日志-->
+    <appender name="infoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss} 0 1] [%logger{36}] %X{REQUEST_ID} appointtask_%-5level %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <!--路径-->
+            <fileNamePattern>/data/service_logs/java/appoint_task_info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Error 日志配置-->
+    <appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss} 0 4] [%logger{36}] %X{REQUEST_ID} appointtask_%-5level %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <!--路径-->
+            <fileNamePattern>/data/service_logs/java/appoint_task_error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleLog" />
+        <appender-ref ref="infoLog" />
+        <appender-ref ref="errorLog" />
+    </root>
+
+    <logger name="org.springframework.web" level="INFO" />
+    <logger name="guru.springframework.controllers" level="INFO" />
+    <logger name="org.hibernate" level="INFO" />
+
+</configuration>

@@ -1,0 +1,11 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /api
+spring:
+  profiles:
+    active: redis,es,db,mybatis
+  kafka:
+    consumer:
+      group-id: test
+      auto-offset-reset: earliest

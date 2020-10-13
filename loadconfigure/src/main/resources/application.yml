@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: loadconfigure
+  profiles:
+    active: dev
+etcd:
+  username: sale_java_r
+  password: Xowf34Jj4a
+  watchKeyPrefix: /sale_java/marketing
+  configKeys: /sale_java/marketing/shop_companion_city,
+  enabled: true
+  isAuth: true
+  needInit: true
+  haltWhenError: false
+
+
+---
+spring:
+  profiles: dev
+etcd:
+  etcdUrl:
