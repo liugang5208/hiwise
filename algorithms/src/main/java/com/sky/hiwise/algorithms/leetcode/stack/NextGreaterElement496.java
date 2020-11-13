@@ -64,4 +64,28 @@ public class NextGreaterElement496 {
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
+
+
+    /**
+     * 单调栈的思想，如果在遍历的过程中遇到了比他大的，则直接出栈。 如果没遇到更大的，则留在栈中，且遇到更大的先考虑的是栈顶的可见性。
+     * 如果遍历结束后依然留在栈中的，则代表他后面没有比他更大的，则更新为-1。
+     * @param A
+     * @param n
+     * @return
+     */
+    public int[] findNext(int[] A, int n) {
+        // write code here
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0; i < n; i++){
+            while(!stack.isEmpty() && A[stack.peek()]<A[i]){
+                A[stack.pop()] = A[i];
+            }
+            stack.add(i);
+        }
+        while(!stack.isEmpty()){
+            A[stack.pop()] = -1;
+        }
+        return A;
+    }
+
 }
