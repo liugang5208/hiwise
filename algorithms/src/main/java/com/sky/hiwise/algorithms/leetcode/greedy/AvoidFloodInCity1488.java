@@ -1,9 +1,6 @@
 package com.sky.hiwise.algorithms.leetcode.greedy;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class AvoidFloodInCity1488 {
     /**
@@ -48,17 +45,37 @@ public class AvoidFloodInCity1488 {
                 continue;
             }
             if (map.containsKey(r)){
-                int beforeIdx = map.get(r);
-                if (beforeIdx == queue.peek()) {
-                    return new int[rains.length];
+                if (queue.size() == 0) {
+                    return new int[0];
                 }
-                ans[beforeIdx] = r;
-                queue.poll();
+                ans[queue.poll()] = r;
             }
             map.put(r, i);
             ans[i] = -1;
         }
+        while (!queue.isEmpty()) {
+            ans[queue.poll()] = 1;
+        }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] rains = new int[]{1,2,0,0,2,1};
+        int[] rains1 = new int[]{69,0,0,0,69};
+        int[] rains2 = new int[]{0,1,1};
+        int[] rains3 = new int[]{1,0,2,0};
+        //[1,-1,-1]
+        int[] ans = (new AvoidFloodInCity1488()).avoidFlood(rains);
+        for (int a : ans) {
+            System.out.println(a);
+        }
+        ans = (new AvoidFloodInCity1488()).avoidFlood(rains3);
+        ans = (new AvoidFloodInCity1488()).avoidFlood(rains3);
+        ans = (new AvoidFloodInCity1488()).avoidFlood(rains3);
+        for (int a : ans) {
+            System.out.println(a);
+        }
+
     }
 
     /**
