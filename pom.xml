@@ -27,6 +27,7 @@
         <module>hbase</module>
         <module>study</module>
         <module>gateway</module>
+        <module>youli</module>
     </modules>
 
     <description>Hiwise project for Spring Boot</description>
