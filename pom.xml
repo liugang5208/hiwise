@@ -28,6 +28,7 @@
         <module>study</module>
         <module>gateway</module>
         <module>youli</module>
+        <module>backend</module>
     </modules>
 
     <description>Hiwise project for Spring Boot</description>
