@@ -25,7 +25,7 @@ public class MinSubArrayLen209 {
         while (end < nums.length) {
             sum += nums[end];
             while (sum >= s) {
-                minLength = minLength > end - start + 1 ? end - start + 1 : minLength;
+                minLength = Math.min(minLength, end - start + 1);
                 sum -= nums[start++];
             }
             end++;

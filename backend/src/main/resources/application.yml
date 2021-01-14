@@ -1,0 +1,20 @@
+server:
+  port: 8083
+spring:
+  profiles:
+    active: test
+  application:
+    name: di-backend
+  freemarker:
+    cache: false
+    enabled: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/,classpath:/views/   # 设定模板的加载路径，多个以逗号分隔，默认:
+    settings:
+      template_update_delay: 0
+      default_encoding: UTF-8
+      classic_compatible: true
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**

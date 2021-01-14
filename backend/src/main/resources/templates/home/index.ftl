@@ -108,7 +108,7 @@
                                 <a lay-href="homepage1">接口对比测试</a>
                             </dd>
                             <dd data-name="console">
-                                <a lay-href="homepage2">主页二</a>
+                                <a lay-href="http://localhost:8085/swagger-ui.html">主页二</a>
                             </dd>
                         </dl>
                     </li>
