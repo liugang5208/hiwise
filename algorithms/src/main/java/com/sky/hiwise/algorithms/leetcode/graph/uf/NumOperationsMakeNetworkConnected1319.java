@@ -8,7 +8,7 @@ public class NumOperationsMakeNetworkConnected1319 {
      * 给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。
      */
     public int makeConnected(int n, int[][] connections) {
-        UF uf = new UF(n);
+        UnionFind uf = new UnionFind(n);
         int cnt = 0;
         int num = n;
         for (int[] c : connections) {
@@ -39,33 +39,4 @@ public class NumOperationsMakeNetworkConnected1319 {
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
-
-    class UF {
-        private int[] parent;
-        public UF(int n) {
-            parent = new int[n];
-            for (int i = 0; i < n; i++) {
-                parent[i] = i;
-            }
-        }
-
-        public int find(int p) {
-            if (p != parent[p]) {
-                parent[p] = find(parent[p]);
-            }
-            return parent[p];
-        }
-
-        public boolean isConnected(int p, int q) {
-            return find(p) == find(q);
-        }
-
-        public void union(int p, int q) {
-            int pRoot = find(p);
-            int qRoot = find(q);
-            if (pRoot != qRoot) {
-                parent[pRoot] = qRoot;
-            }
-        }
-    }
 }

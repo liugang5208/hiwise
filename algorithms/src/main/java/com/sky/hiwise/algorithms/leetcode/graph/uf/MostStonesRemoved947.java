@@ -44,30 +44,4 @@ public class MostStonesRemoved947 {
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
-
-    class UnionFind {
-        private int[] parent;
-
-        public UnionFind(int n) {
-            parent = new int[n];
-            for (int i = 0; i < n; i++) {
-                parent[i] = i;
-            }
-        }
-
-        public int find(int p) {
-            if (p != parent[p]) {
-                parent[p] = find(parent[p]);
-            }
-            return parent[p];
-        }
-
-        public void union(int p, int q) {
-            int pRoot = find(p);
-            int qRoot = find(q);
-            if (pRoot != qRoot) {
-                parent[pRoot] = qRoot;
-            }
-        }
-    }
 }
