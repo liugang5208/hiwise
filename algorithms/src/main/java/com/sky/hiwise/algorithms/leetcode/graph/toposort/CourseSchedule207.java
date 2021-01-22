@@ -1,4 +1,4 @@
-package com.sky.hiwise.algorithms.leetcode.graph;
+package com.sky.hiwise.algorithms.leetcode.graph.toposort;
 
 import java.util.Arrays;
 import java.util.LinkedList;
