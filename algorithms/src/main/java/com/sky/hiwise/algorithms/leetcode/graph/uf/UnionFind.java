@@ -24,4 +24,8 @@ public class UnionFind {
             parent[pRoot] = qRoot;
         }
     }
+
+    public boolean isConnected(int p, int q) {
+        return find(p) == find(q);
+    }
 }
