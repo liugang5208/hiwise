@@ -28,4 +28,14 @@ public class UnionFind {
     public boolean isConnected(int p, int q) {
         return find(p) == find(q);
     }
+
+    public int getConnectedCount() {
+        int count = 0;
+        for (int i = 0; i < parent.length; i++) {
+            if (parent[i] == i) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
