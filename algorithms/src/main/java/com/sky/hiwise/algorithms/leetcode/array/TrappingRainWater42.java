@@ -10,6 +10,10 @@ public class TrappingRainWater42 {
      * 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
      * 输出: 6
      * https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/jie-yu-shui
+     *
+     * 面试题 17.21. 直方图的水量
+     * https://leetcode-cn.com/problems/volume-of-histogram-lcci/
+     *
      * @param height
      * @return
      */
