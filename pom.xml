@@ -29,6 +29,7 @@
         <module>gateway</module>
         <module>youli</module>
         <module>backend</module>
+        <module>flink</module>
     </modules>
 
     <description>Hiwise project for Spring Boot</description>
