@@ -65,7 +65,7 @@ public class FindKthToTail0202 {
         while (node1 != null) {
             node1 = node1.next;
             count++;
-            if (k < 1 && node1 != null) {
+            if (k < 1 && node2 != null) {
                 node2 = node2.next;
             }
             k --;

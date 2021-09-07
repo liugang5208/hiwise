@@ -7,12 +7,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class LockTest {
     public static void main(String[] args) {
-        int[] a = new int[]{5,0,9,1,20,1,8};
-        int[] b = a.clone();
-        Arrays.sort(b);
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
+//        int[] a = new int[]{5,0,9,1,20,1,8};
+//        int[] b = a.clone();
+//        Arrays.sort(b);
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.println(a[i]);
+//        }
         //test();
         //student name code sex
         //score  code math
@@ -22,11 +22,12 @@ public class LockTest {
          * from student as st left join score as sc on st.code = sc.code
          * where st.sex = 1
          */
+        test2();
     }
 
     public static Thread t1, t2;
-    public volatile int count = 0;
-    public void test2() {
+    public static volatile int count = 0;
+    public static void test2() {
         t1 = new Thread(()->{
             while (true) {
                 count ++;

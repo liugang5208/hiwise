@@ -31,7 +31,7 @@ public class PriorityQueueTopK {
         }
 
         PriorityQueue<Integer> pq = new PriorityQueue<>(
-                (a, b) -> map.get(a) - map.get(b)
+                Comparator.comparingInt(map::get)
         );
         for(int key: map.keySet()){
             if(pq.size() < k)
@@ -93,7 +93,7 @@ public class PriorityQueueTopK {
                 pq.add(val);
             }
         }
-        LinkedList res = new LinkedList();
+        LinkedList<Integer> res = new LinkedList<>();
         while(!pq.isEmpty()) {
             res.add(pq.remove());
         }
@@ -137,6 +137,41 @@ public class PriorityQueueTopK {
             res[i++] = pq.remove();
         }
         return res;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/smallest-k-lcci/
+     * 面试题 17.14. 最小K个数
+     * 设计一个算法，找出数组中最小的k个数。以任意顺序返回这k个数均可。
+     * 示例：
+     * 输入： arr = [1,3,5,7,2,4,6,8], k = 4
+     * 输出： [1,2,3,4]
+     * 提示：
+     * 0 <= len(arr) <= 100000
+     * 0 <= k <= min(100000, len(arr))
+     * @param arr
+     * @param k
+     * @return
+     */
+    public int[] smallestK1714(int[] arr, int k) {
+        if (k <= 0) {
+            return new int[0];
+        }
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        for (int i = 0; i < arr.length; i++) {
+            if (pq.size() < k) {
+                pq.offer(arr[i]);
+            } else if (pq.peek() > arr[i]) {
+                pq.remove();
+                pq.add(arr[i]);
+            }
+        }
+        int[] ans = new int[k];
+        int i = 0;
+        while (!pq.isEmpty()) {
+            ans[i++] = pq.poll();
+        }
+        return ans;
     }
 
 
