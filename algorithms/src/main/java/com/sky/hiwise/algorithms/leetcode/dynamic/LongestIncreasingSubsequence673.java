@@ -65,4 +65,38 @@ public class LongestIncreasingSubsequence673 {
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
+    public int findNumberOfLIS1(int[] nums) {
+        int n = nums.length;
+        if (n <= 1) {
+            return n;
+        }
+        int[] dp = new int[n];
+        int[] cnt = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1;
+            cnt[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    if (dp[j] + 1 > dp[i]) {
+                        dp[i] = dp[j] + 1;
+                        cnt[i] = cnt[j];
+                    } else if (dp[j] + 1 == dp[i]) {
+                        cnt[i] += cnt[j];
+                    }
+                }
+            }
+        }
+
+        int longest = 0, ans = 0;
+        for (int i = 0; i < n; i++) {
+            longest = Math.max(longest, dp[i]);
+        }
+
+        for (int j = 0; j < n; j++) {
+            if (dp[j] == longest) {
+                ans += cnt[j];
+            }
+        }
+        return ans;
+    }
 }
