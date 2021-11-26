@@ -8,22 +8,32 @@ public class TraceThread {
     private static ThreadLocal<String> trace = new InheritableThreadLocal<>();
 
     public static void main(String[] args) {
-        String traceId = UUID.randomUUID().toString().replace("-", "");
-
+        String traceId = "";//UUID.randomUUID().toString().replace("-", "");
+        //trace.set(traceId);
        // trace.set(UUID.randomUUID().toString().replace("-", ""));
-        //System.out.println(trace.get());
+//        System.out.println(trace.get());
 //        new Thread(() -> {
 //            System.out.println(trace.get());
 //        }).start();
         ExecutorService service = new ThreadPoolExecutor(5, 10, 20, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100));
-        service.submit(new TransRunnable(new TestRun(), traceId));
+        //service.submit(new TransRunnable(new TestRun(), traceId));
+        for (int i = 0; i < 10; i++) {
+            traceId = "traceId" + i + ":" + UUID.randomUUID().toString().replace("-", "");
+            ThreadContext.setServerContext(traceId);
+            service.submit(new TransRunnable(new TestRun(), traceId));
+        }
+        service.shutdown();
     }
 
     public static class TestRun implements Runnable {
 
         @Override
         public void run() {
-            System.out.println(trace.get());
+            try {
+                System.out.println("TestRun:" + ThreadContext.getServerContext());
+            } finally {
+                ThreadContext.removeServerContext();
+            }
         }
     }
 
@@ -34,13 +44,14 @@ public class TraceThread {
         private Runnable runnable;
         TransRunnable(Runnable runnable, String traceId) {
             this.runnable = runnable;
-            trace.set(traceId);
+            //ThreadContext.setServerContext(traceId);
             this.traceId = traceId;
         }
 
         @Override
         public void run() {
-            System.out.println("traceId:" + traceId);
+            System.out.println("TransRunnable:" + ThreadContext.getServerContext());
+            ThreadContext.setServerContext(traceId);
             runnable.run();
         }
     }
