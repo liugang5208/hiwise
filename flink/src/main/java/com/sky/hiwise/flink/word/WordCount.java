@@ -1,4 +1,4 @@
-package com.sky.hiwise.flink;
+package com.sky.hiwise.flink.word;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
