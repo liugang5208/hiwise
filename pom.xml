@@ -8,21 +8,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>autoconfigure</module>
         <module>test</module>
-        <module>disruptor</module>
-        <module>guava</module>
-        <module>kafka</module>
         <module>loadconfigure</module>
-        <module>rocketmq</module>
-        <module>threadpool</module>
-        <module>statemachine</module>
-        <module>statemachine-persist</module>
-        <module>netty</module>
         <module>lessons</module>
         <module>design</module>
         <module>mybatis</module>
-        <module>sharding</module>
         <module>algorithms</module>
         <module>hbase</module>
         <module>study</module>

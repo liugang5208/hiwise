@@ -62,6 +62,21 @@
             <artifactId>flink-csv</artifactId>
             <version>1.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.meituan.hadoop.afo.pytorch-serving-client</groupId>
+            <artifactId>pytorch-serving-client</artifactId>
+            <version>0.7</version> <!-- 建议访问 http://pixel.sankuai.com/，搜索 pytorch-serving-client 获取最新版本-->
+        </dependency>
+        <dependency>
+            <groupId>com.meituan.service.mobile</groupId>
+            <artifactId>mtthrift</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.9.3-mt</version>
+        </dependency>
     </dependencies>
 
 
