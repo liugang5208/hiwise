@@ -73,7 +73,7 @@ public class UniquePaths980 {
         visited[x][y] = true;
         left --;
         if (left == 0 && v == end) {
-            visited[x][y] = false;
+            visited[x][y] = false;  //需要找到所有可行的路径
             return 1;
         }
         int res = 0;

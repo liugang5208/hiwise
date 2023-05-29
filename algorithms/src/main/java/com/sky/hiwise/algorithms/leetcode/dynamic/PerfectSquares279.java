@@ -34,6 +34,8 @@ public class PerfectSquares279 {
         for (int i = 1; i * i < n; i++) {
             res = Math.min(res, numSqu(n - i * i) + 1);
         }
+
+        memo[n] = res;
         return res;
     }
 

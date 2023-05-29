@@ -44,6 +44,7 @@ public class OpenTheLock752 {
         if (target.equals("0000")) {
             return 0;
         }
+        //HashSet<String> deads = new HashSet<>(Arrays.asList(deadends));
         HashSet<String> deads = new HashSet<>();
         for(String dead : deadends) {
             deads.add(dead);

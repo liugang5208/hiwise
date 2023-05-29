@@ -1,5 +1,7 @@
 package com.sky.hiwise.algorithms.leetcode.linkedlist;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class AddTwoNumbers445 {
@@ -174,6 +176,53 @@ public class AddTwoNumbers445 {
 
         return dummyHead.next;
     }
+
+    public static ListNode deleteDuplicates1(ListNode head) {
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode pre = dummyNode;
+        ListNode curr = head;
+        boolean isDelCurr = false;
+        while (curr != null && curr.next != null) {
+            if(curr.val == curr.next.val) {
+                curr.next = curr.next.next;
+                isDelCurr = true;
+            } else {
+                if (isDelCurr) {
+                    pre.next = curr.next;
+                    isDelCurr = false;
+                } else {
+                    pre = pre.next;
+                }
+                curr = curr.next;
+            }
+        }
+        if (isDelCurr) {
+            pre.next = curr.next;
+        }
+        return dummyNode.next;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1,2,3,3,4,4);
+        ListNode listNode = genListNode(list);
+        ListNode node = deleteDuplicates1(listNode);
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
+    }
+
+    private static ListNode genListNode(List<Integer> list) {
+        ListNode dummyNode = new ListNode(-1);
+        ListNode currNode = dummyNode;
+        for (Integer item : list) {
+            currNode.next = new ListNode(item);
+            currNode = currNode.next;
+        }
+        return dummyNode.next;
+    }
+
 
     /**
      * 21. 合并两个有序链表

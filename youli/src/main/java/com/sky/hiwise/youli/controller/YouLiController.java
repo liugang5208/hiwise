@@ -65,32 +65,37 @@ public class YouLiController  {
         return "success";
     }
 
-    public static void main(String[] args) throws Exception {
-        //xpath  casper js
-        //chrome headless
+//    public static void main(String[] args) throws Exception {
+//        //xpath  casper js
+//        //chrome headless
+//
+//        for (int i = 0; i < 300; i++) {
+//            Integer id = AtomicId.getId();
+//            String url = AtomicId.URL_PRIFIX + id;
+//            HttpClientResult result = HttpClientUtils.doGet(url);
+//            Document document = Jsoup.parse(result.getContent());
+//            Element baseInfo = document.getElementById("base-info");
+//
+//            System.out.println("deal : " + id);
+//            if (baseInfo == null) {
+//                System.out.println(result);
+//                HtmlUnitDriver driver = new HtmlUnitDriver();
+//                //必须设置为true,才能执行js代码
+//                driver.setJavascriptEnabled(true);
+//                driver.get(url);
+//                driver.setJavascriptEnabled(false);
+//                driver.get(url);
+//                String pageSource = driver.getPageSource();
+//                System.out.println(pageSource);
+//            }
+//
+//        }
+//
+//    }
 
-        for (int i = 0; i < 300; i++) {
-            Integer id = AtomicId.getId();
-            String url = AtomicId.URL_PRIFIX + id;
-            HttpClientResult result = HttpClientUtils.doGet(url);
-            Document document = Jsoup.parse(result.getContent());
-            Element baseInfo = document.getElementById("base-info");
-
-            System.out.println("deal : " + id);
-            if (baseInfo == null) {
-                System.out.println(result);
-                HtmlUnitDriver driver = new HtmlUnitDriver();
-                //必须设置为true,才能执行js代码
-                driver.setJavascriptEnabled(true);
-                driver.get(url);
-                driver.setJavascriptEnabled(false);
-                driver.get(url);
-                String pageSource = driver.getPageSource();
-                System.out.println(pageSource);
-            }
-
-        }
-
+    public static void main(String[] args) throws Exception  {
+        HttpClientResult result = HttpClientUtils.doGet("http://127.0.0.1:8000/tsfresh/index?bikeId=8640506626");
+        System.out.println(result);
     }
 
 
