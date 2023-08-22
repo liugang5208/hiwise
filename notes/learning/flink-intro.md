@@ -100,3 +100,58 @@ Flink为不同的环境和资源管理工具提供了不同资源管理器，比
 Dispatcher也会启动一个Web UI，用来方便地展示和监控作业执行的信息。
 
 Dispatcher在架构中可能并不是必需的，这取决于应用提交运行的方式。
+### 2.2 任务提交流程
+1、Flink 的各个组件是如何交互协作的，下图是从一个较为高层级的视角，来看应用中各组件的交互协作。如果部署的集群环境不同（例如 YARN，Mesos，Kubernetes，standalone 等），其中一些步骤可以被省略，或是有些组件会运行在同一个 JVM 进程中。
+![task](../img/flink/task.png)
+2、具体地，如果我们将 Flink 集群部署到 YARN 上，那么就会有如下的提交流程：
+![task-submit](../img/flink/task-submit.png)
+Flink 任务提交后，Client 向 HDFS 上传 Flink 的 Jar 包和配置，之后向 Yarn ResourceManager 提交任务，ResourceManager 分配 Container 资源并通知对应的NodeManager 启动 ApplicationMaster，ApplicationMaster 启动后加载 Flink 的 Jar 包和配置构建环境，然后启动 JobManager，之后 ApplicationMaster 向 ResourceManager申请资源启动 TaskManager ， ResourceManager 分 配 Container 资 源 后 ， 由ApplicationMaster 通 知 资 源 所 在 节 点 的 NodeManager 启 动 TaskManager ，NodeManager 加载 Flink 的 Jar 包和配置构建环境并启动 TaskManager，TaskManager启动后向 JobManager 发送心跳包，并等待 JobManager 向其分配任务。
+### 2.3 任务调度
+1、任务调度原理
+![task-dispatch](../img/flink/task-dispatch.svg)
+客户端不是运行时和程序执行的一部分，但它用于准备并发送dataflow(JobGraph)给 Master(JobManager)，然后，客户端断开连接或者维持连接以等待接收计算结果。
+
+当 Flink集群启动后，首先会启动一个JobManger和一个或多个的TaskManager。由Client提交任务给JobManager，JobManager再调度任务到各个TaskManager 去执行，然后TaskManager将心跳和统计信息汇报给JobManager。TaskManager之间以流的形式进行数据的传输。上述三者均为独立的 JVM 进程。
+
+Client 为提交Job的客户端，可以是运行在任何机器上（与JobManager 环境连通即可）。提交Job后，Client 可以结束进程（Streaming 的任务），也可以不结束并等待结果返回。
+
+JobManager 主 要 负 责 调 度 Job 并 协 调 Task 做 checkpoint， 职 责 上 很 像Storm 的 Nimbus。从 Client 处接收到 Job 和 JAR 包等资源后，会生成优化后的执行计划，并以 Task 的单元调度到各个 TaskManager 去执行。
+
+TaskManager 在启动的时候就设置好了槽位数（Slot），每个 slot 能启动一个Task，Task 为线程。从 JobManager 处接收需要部署的 Task，部署启动后，与自己的上游建立 Netty 连接，接收数据并处理。
+
+2、并行度
+
+Flink 程序的执行具有并行、分布式的特性。
+
+在执行过程中，一个流（stream）包含一个或多个分区（stream partition），而每一个算子（operator）可以包含一个或多个子任务（operator subtask），这些子任务在不同的线程、不同的物理机或不同的容器中彼此互不依赖地执行。
+
+一个特定算子的子任务（subtask）的个数被称之为其并行度（parallelism）。
+
+一般情况下，一个流程序的并行度，可以认为就是其所有算子中最大的并行度。一个程序中，不同的算子可能具有不同的并行度。
+
+![parallelism](../img/flink/parallelism.svg)
+
+3、TaskManager 和 Slots
+
+ Flink 中每一个 TaskManager 都是一个JVM进程，它可能会在独立的线程上执行一个或多个子任务，为了控制一个 TaskManager 能接收多少个 task， TaskManager 通过 task slot 来进行控制（一个 TaskManager 至少有一个 slot）
+![tasks_slots](../img/flink/tasks_slots.svg)
+默认情况下，Flink 允许子任务共享 slot，即使它们是不同任务的子任务。 这样的结果是，一个 slot 可以保存作业的整个管道。Task Slot 是静态的概念，是指 TaskManager 具有的并发执行能力
+![slot_sharing](../img/flink/slot_sharing.svg)
+
+附官方文档连接：https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/concepts/flink-architecture/
+ 
+## 3 Flink流处理API
+在Flink中，应用程序由可由用户定义的运算符转换的流式数据流组成。这些数据流形成有向图，从一个或多个源开始，到一个或多个汇结束。
+
+Flink流处理API的编程模型如下图：
+![program_dataflow](../img/flink/program_dataflow.svg)
+
+Flink流处理整体流程抽象如下图：
+![api-process](../img/flink/api-process.png)
+
+### 3.1 Environment
+
+
+ 
+ 
+ 
