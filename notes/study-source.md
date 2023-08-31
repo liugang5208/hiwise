@@ -1,3 +1,5 @@
+AGI
+https://waytoagi.feishu.cn/wiki/PFXnwBTsEiGwGGk2QQFcdTWrnlb?table=blkjooAlLFNtvKJ2
 
 SAM
 * https://www.bilibili.com/video/BV1sv4y1J79a
