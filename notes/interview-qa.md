@@ -79,6 +79,8 @@ MySQL数据库的数据备份、主备、主主、主从都离不开binlog，需
 3. ThreadLocal 使用场景，底层实现原理
 4. ReentrantLock 实现原理 CAS AQS
 5. CMS G1 垃圾收集器运行原理 解决什么问题
+6. synchronized与ReentrantLock
+7. HashMap ConcurrentHashMap 
 
 ## 算法提
 1. 合并两个有序链表  
