@@ -64,6 +64,7 @@ public class SlidingPuzzle773 {
 
     private List<String> getNexts(String cur) {
         int[][] board = stringToBoard(cur);
+        //先找到空格子位置
         int zeroPos;
         for (zeroPos = 0; zeroPos < 6; zeroPos++) {
             if (board[zeroPos / 3][zeroPos % 3] == 0) {

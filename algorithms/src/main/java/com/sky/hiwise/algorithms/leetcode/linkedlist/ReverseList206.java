@@ -126,7 +126,6 @@ public class ReverseList206 {
      * @return
      */
     public ListNode reverseKGroup(ListNode head, int k) {
-
         ListNode check = head, curr = head, pre = null, next = null;
         int canProceed = 0;
         int count = 0;
@@ -134,7 +133,6 @@ public class ReverseList206 {
             check = check.next;
             canProceed ++;
         }
-
         if (canProceed == k) {
             while (count < k && curr != null) {
                 next = curr.next;

@@ -1,6 +1,23 @@
 package com.sky.hiwise.algorithms.leetcode.array;
 
-public class LengthOfLongestSubstring {
+public class LengthOfLongestSubstring3 {
+
+
+    public static int findLen(String s){
+        int[] memo = new int[256];
+        char[] str = s.toCharArray();
+        int res = 0;
+        int left = 0;
+        for (int i = 0; i < str.length; i++) {
+            if (memo[str[i]] == 0 || memo[str[i]] < left) {
+                res = Math.max(res, i - left + 1);
+            } else {
+                left = memo[str[i]];
+            }
+            memo[str[i]] = i + 1;
+        }
+        return res;
+    }
 
     /**
      * 3. 无重复字符的最长子串
@@ -21,10 +38,10 @@ public class LengthOfLongestSubstring {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
         int[] memo = new int[256];
         int res = 0, left = 0;
-        char []str = s.toCharArray();
+        char[] str = s.toCharArray();
         for (int i = 0; i < str.length; i++) {
             if (memo[str[i]] == 0 || memo[str[i]] < left) {
                 res = Math.max(res, i - left + 1);
@@ -35,6 +52,10 @@ public class LengthOfLongestSubstring {
         }
 
         return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring(" "));
     }
 
     public int lengthOfLongestSubstring1(String s) {

@@ -36,7 +36,6 @@ public class SimplifyPath71 {
      * @return
      */
     public String simplifyPath(String path) {
-
         String[] paths = path.split("/");
         Stack stack = new Stack();
 

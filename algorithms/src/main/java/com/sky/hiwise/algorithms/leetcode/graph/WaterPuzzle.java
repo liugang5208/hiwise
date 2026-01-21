@@ -17,6 +17,7 @@ public class WaterPuzzle {
         while (!queue.isEmpty()) {
             int cur = queue.remove();
             int a = cur / 10, b = cur % 10;
+            //max a = 5 max b = 3
             List<Integer> nexts = new ArrayList<>();
             nexts.add(5 * 10 + b);
             nexts.add(a * 10 + 3);
@@ -42,7 +43,6 @@ public class WaterPuzzle {
         }
     }
 
-
     public Iterable<Integer> result() {
         ArrayList<Integer> res = new ArrayList<>();
         if (end == -1) {
@@ -63,6 +63,4 @@ public class WaterPuzzle {
         wp.WaterPuzzle();
         System.out.println(wp.result());
     }
-
-
 }

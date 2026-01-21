@@ -30,7 +30,6 @@ public class ZigzagLevelOrder203 {
         if (root == null) {
             return res;
         }
-
         Stack<TreeNode> stack1 = new Stack<>();
         Stack<TreeNode> stack2 = new Stack<>();
         stack1.push(root);

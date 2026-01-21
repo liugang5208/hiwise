@@ -72,7 +72,6 @@ public class AddTwoNumbers2 {
         if (head == null || n <= 0) {
             return null;
         }
-
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         // 声明两个指向头结点的节点
@@ -84,7 +83,6 @@ public class AddTwoNumbers2 {
             }
             n --;
         }
-
         node2.next = node2.next.next;
         return dummy.next;
     }
@@ -122,7 +120,6 @@ public class AddTwoNumbers2 {
         if (head == null) {
             return null;
         }
-
         ListNode dummyNode1 = new ListNode(0);
         ListNode dummyNode2 = new ListNode(0);
         ListNode node1 = dummyNode1, node2 = dummyNode2;

@@ -1,6 +1,7 @@
 package com.sky.hiwise.algorithms.leetcode.queue;
 
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class PriorityQueueTopK {
 
@@ -21,7 +22,6 @@ public class PriorityQueueTopK {
      * @return
      */
     public List<Integer> topKFrequent(int[] nums, int k) {
-
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for(int num: nums){
             if(map.containsKey(num))

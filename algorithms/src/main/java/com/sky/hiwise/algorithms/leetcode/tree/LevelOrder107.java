@@ -35,7 +35,6 @@ public class LevelOrder107 {
         int level = 0;
         while (!queue.isEmpty()) {
             levels.add(new ArrayList<>());
-
             int levelSize = queue.size();
             for(int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.remove();
@@ -49,7 +48,6 @@ public class LevelOrder107 {
             }
             level ++;
         }
-
         Collections.reverse(levels);
         return levels;
     }

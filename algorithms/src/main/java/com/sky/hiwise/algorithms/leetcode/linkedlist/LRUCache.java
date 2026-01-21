@@ -1,6 +1,7 @@
 package com.sky.hiwise.algorithms.leetcode.linkedlist;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class LRUCache {
 
@@ -45,5 +46,9 @@ public class LRUCache {
         }
         cache.addFirst(x);
         map.put(key, x);
+    }
+
+    public static void main(String[] args) {
+        LinkedHashMap map = new LinkedHashMap();
     }
 }

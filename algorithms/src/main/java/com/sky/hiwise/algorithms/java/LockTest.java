@@ -22,7 +22,7 @@ public class LockTest {
          * from student as st left join score as sc on st.code = sc.code
          * where st.sex = 1
          */
-        test2();
+        test();
     }
 
     public static Thread t1, t2;

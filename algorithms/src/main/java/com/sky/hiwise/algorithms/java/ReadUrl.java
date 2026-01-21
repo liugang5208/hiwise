@@ -3,6 +3,7 @@ package com.sky.hiwise.algorithms.java;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 
 public class ReadUrl {
 
@@ -14,7 +15,7 @@ public class ReadUrl {
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
 
-            OutputStream os = new FileOutputStream(file);
+            OutputStream os = Files.newOutputStream(file.toPath());
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
 
             char[] chars = new char[1024];

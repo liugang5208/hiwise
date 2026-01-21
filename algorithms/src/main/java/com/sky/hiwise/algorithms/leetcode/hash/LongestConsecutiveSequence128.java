@@ -1,7 +1,9 @@
 package com.sky.hiwise.algorithms.leetcode.hash;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class LongestConsecutiveSequence128 {
 
@@ -32,4 +34,28 @@ public class LongestConsecutiveSequence128 {
         }
         return ans;
     }
+
+    public int longestConsecutive2(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        Set<Integer> sets = new HashSet<>();
+        for (int num : nums) {
+            sets.add(num);
+        }
+        int ans = 0;
+        for (int num : sets) {
+            if (!sets.contains(num - 1)) {
+                int curLen = 1;
+                int curNum = num;
+                while (sets.contains(curNum + 1)) {
+                    curLen++;
+                    curNum++;
+                }
+                ans = Math.max(ans, curLen);
+            }
+        }
+        return ans;
+    }
+
 }

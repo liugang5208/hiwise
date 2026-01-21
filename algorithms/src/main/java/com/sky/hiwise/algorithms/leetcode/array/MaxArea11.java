@@ -1,8 +1,12 @@
 package com.sky.hiwise.algorithms.leetcode.array;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MaxArea11 {
 
     public static void main(String[] args) {
+        Queue<int[][]> queue = new LinkedList<>();
 
     }
 

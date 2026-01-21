@@ -65,52 +65,43 @@ public class AddTwoNumbers445 {
      * @return
      */
     public ListNode addTwoNumbers445(ListNode l1, ListNode l2) {
-
         Stack<Integer> stack = new Stack<>();
         Stack<Integer> stack1 = new Stack<>();
         Stack<Integer> stack2 = new Stack<>();
-
         while (l1 != null) {
             stack1.push(l1.val);
             l1 = l1.next;
         }
-
         while (l2 != null) {
             stack2.push(l2.val);
             l2 = l2.next;
         }
-
         int bits = 0;
         while(!stack1.isEmpty() && !stack2.isEmpty()) {
             int sum = stack1.pop() + stack2.pop() + bits;
             bits = sum/10;
             stack.push(sum % 10);
         }
-
         while(!stack1.isEmpty()) {
             int sum = stack1.pop() + bits;
             bits = sum/10;
             stack.push(sum % 10);
         }
-
         while(!stack2.isEmpty()) {
             int sum = stack2.pop() + bits;
             bits = sum/10;
             stack.push(sum % 10);
         }
-
         // l1到达尾端，l2到达尾端,判断最末端是否有进位
         if(bits == 1){
             stack.push(1);
         }
-
         ListNode dummyHead = new ListNode(0);
         ListNode temp = dummyHead;
         while (!stack.isEmpty()) {
             dummyHead.next = new ListNode(stack.pop());
             dummyHead = dummyHead.next;
         }
-
         return  temp.next;
     }
 
@@ -203,7 +194,32 @@ public class AddTwoNumbers445 {
         return dummyNode.next;
     }
 
-    public static void main(String[] args) {
+    public ListNode deleteDuplicates3(ListNode head) {
+        // 哑节点作为新链表的前驱，方便处理边界情况
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        // pre 指针指向当前确定保留的最后一个节点，初始指向哑节点
+        ListNode pre = dummy;
+        ListNode cur = head;
+        while (cur != null) {
+            // 移动 cur 指针直到找到一个不同的值
+            while (cur.next != null && cur.val == cur.next.val) {
+                cur = cur.next;
+            }
+            // 如果 pre.next 就是 cur，说明当前值没有重复，可以更新 pre 指针
+            if (pre.next == cur) {
+                pre = pre.next;
+            } else {
+                // 如果找到重复项，跳过它们
+                pre.next = cur.next;
+            }
+            // 移动 cur 指针
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
+
+   /* public static void main(String[] args) {
         List<Integer> list = Arrays.asList(1,2,3,3,4,4);
         ListNode listNode = genListNode(list);
         ListNode node = deleteDuplicates1(listNode);
@@ -212,7 +228,7 @@ public class AddTwoNumbers445 {
             node = node.next;
         }
     }
-
+*/
     private static ListNode genListNode(List<Integer> list) {
         ListNode dummyNode = new ListNode(-1);
         ListNode currNode = dummyNode;
@@ -233,10 +249,8 @@ public class AddTwoNumbers445 {
      * @return
      */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-
         ListNode dummyHead = new ListNode(0);
         ListNode curr = dummyHead;
-
         while(l1 != null && l2 != null) {
             if (l1.val < l2.val ) {
                 curr.next = new ListNode(l1.val);
@@ -247,18 +261,6 @@ public class AddTwoNumbers445 {
             }
             curr = curr.next;
         }
-//        while(l1 != null) {
-//            curr.next = new ListNode(l1.val);
-//            l1 = l1.next;
-//            curr = curr.next;
-//        }
-//
-//        while (l2 != null) {
-//            curr.next = new ListNode(l2.val);
-//            l2 = l2.next;
-//            curr = curr.next;
-//        }
-
         // 任一为空，直接连接另一条链表
         if (l1 == null) {
             curr.next = l2;

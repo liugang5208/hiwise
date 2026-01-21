@@ -57,7 +57,7 @@ public class PartitionEqualSubsetSum416 {
             return memo[index][capacity] == 1;
         }
         memo[index][capacity] = (tryPartition(nums, index - 1, capacity)
-                || tryPartition(nums, index - 1, capacity - nums[index])) ? 1 :0;
+                || tryPartition(nums, index - 1, capacity - nums[index])) ? 1 : 0;
         return memo[index][capacity] == 1;
     }
 
